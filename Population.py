@@ -4,6 +4,10 @@ import plotly.graph_objects as go
 
 
 def age_catergory(df_pop_age: pd.DataFrame):
+    """
+    :param df_pop_age:
+    :return: df_pivot_results
+    """
     age_cat = {
         '1. kanak-kanak': ['0-4', '5-9'],
         '2. remaja': ['10-14', '15-19'],
@@ -35,6 +39,9 @@ def age_catergory(df_pop_age: pd.DataFrame):
     return df_pivot_results
 
 def get_population():
+    """
+    :return: df_pop
+    """
     url_population = 'https://storage.dosm.gov.my/population/population_malaysia.parquet'
     df_pop = pd.read_parquet(url_population)
     if 'date' in df_pop.columns:
@@ -42,6 +49,10 @@ def get_population():
     return df_pop
 
 def population_by_year(df_population: pd.DataFrame):
+    """
+    :param df_population:
+    :return: df_Mal_pop_by_year
+    """
     df_population_all = df_population[
         (df_population['sex'] == 'both') & (df_population['ethnicity'] == 'overall') & (
                     df_population['age'] == 'overall')
@@ -52,6 +63,10 @@ def population_by_year(df_population: pd.DataFrame):
     return df_Mal_pop_by_year
 
 def population_by_gender(df_population: pd.DataFrame):
+    """
+    :param df_population:
+    :return: df_male, df_female
+    """
     df_gender = df_population[
         (df_population['sex'] != 'both') & (df_population['ethnicity'] == 'overall') & (
                     df_population['age'] == 'overall')
@@ -71,6 +86,10 @@ def population_by_gender(df_population: pd.DataFrame):
     return df_male, df_female
 
 def population_by_ages(df_population: pd.DataFrame):
+    """
+    :param df_population:
+    :return: df_ages, population_age_cat
+    """
     df = df_population[
         (df_population['sex'] == 'both') & (df_population['age'] != 'overall') & (
                 df_population['ethnicity'] == 'overall')].copy()
