@@ -1,2 +1,9 @@
+pandas
+fastparquet
+streamlit
+pandas
 plotly
-pandas fastparquet
+reportlab
+kaleido
+openai
+statsmodels
